@@ -1,23 +1,27 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 
 const TodoInput = ({ onAdd }) => {
-    const [value, setValue] = useState("")
+  const [value, setValue] = useState("");
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-        if (!value.trim()) return;
-        onAdd(value);
+    if (!value.trim()) return;
+    onAdd(value);
 
-        setValue("");
-    }
+    setValue("");
+  };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <input value={value} onChange={(e) => setValue(e.target.value)} placeholder="할일을 입력하세요."></input>
-            <button>등록</button>
-        </form>
-    )
-}
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        placeholder="할일을 입력하세요."
+      ></input>
+      <button>등록</button>
+    </form>
+  );
+};
 
-export default React.memo(TodoInput)
+export default React.memo(TodoInput);
