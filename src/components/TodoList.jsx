@@ -1,11 +1,13 @@
 import TodoItem from "./TodoItem";
 
-const TodoList = ({ todoList }) => {
-    return (
-        <ul>
-            {todoList.map((todo) => (<TodoItem key={todo.key} todo={todo.todo} />))}
-        </ul>
-    )
-}
+const TodoList = ({ todoList, onClickDelete }) => {
+  return (
+    <ul>
+      {todoList.map((todo) => (
+        <TodoItem key={todo.id} todo={todo} onClickDelete={onClickDelete} />
+      ))}
+    </ul>
+  );
+};
 
-export default TodoList
+export default TodoList;
