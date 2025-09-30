@@ -1,6 +1,12 @@
 import TodoItem from "./TodoItem";
 
-const TodoList = ({ todoList, onClickDelete, onToggle, onToggleStar }) => {
+const TodoList = ({
+  todoList,
+  onClickDelete,
+  onToggle,
+  onToggleStar,
+  onUpdateText,
+}) => {
   return (
     <ul>
       {todoList.map((todo) => (
@@ -10,6 +16,7 @@ const TodoList = ({ todoList, onClickDelete, onToggle, onToggleStar }) => {
           onClickDelete={onClickDelete}
           onToggle={onToggle}
           onToggleStar={onToggleStar}
+          onUpdateText={onUpdateText}
         />
       ))}
     </ul>

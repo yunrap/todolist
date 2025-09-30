@@ -1,6 +1,13 @@
 import React from "react";
+import EditableInput from "./EditableInput";
 
-const TodoItem = ({ todo, onClickDelete, onToggle, onToggleStar }) => {
+const TodoItem = ({
+  todo,
+  onClickDelete,
+  onToggle,
+  onToggleStar,
+  onUpdateText,
+}) => {
   return (
     <>
       <li>
@@ -15,7 +22,10 @@ const TodoItem = ({ todo, onClickDelete, onToggle, onToggleStar }) => {
           {todo.isStarred ? "⭐️" : "☆"}
         </button>
 
-        {todo.text}
+        <EditableInput
+          value={todo.text}
+          onSave={(newText) => onUpdateText(todo.id, newText)}
+        />
         <button onClick={() => onClickDelete(todo.id)}>삭제</button>
       </li>
     </>

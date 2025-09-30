@@ -44,6 +44,13 @@ function App() {
     );
   };
 
+  const onUpdateText = (id, value) => {
+    console.log(id, value);
+    setTodoList((prevList) =>
+      prevList.map((todo) => (todo.id === id ? { ...todo, text: value } : todo))
+    );
+  };
+
   const sortedTodoList = [...todoList].sort((a, b) => {
     return (b.isStarred === true) - (a.isStarred === true);
   });
@@ -59,6 +66,7 @@ function App() {
         onClickDelete={handleClickDelete}
         onToggle={handleToggle}
         onToggleStar={handleToggleStar}
+        onUpdateText={onUpdateText}
       />
     </>
   );
