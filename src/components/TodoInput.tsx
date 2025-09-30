@@ -1,13 +1,24 @@
 import React, { useState } from "react";
+import { Todo } from "../types/todo";
+import { v4 as uuidv4 } from "uuid";
+import { useTodoDispatch } from "../state/todo/TodoContext";
 
-const TodoInput = ({ onAdd }: { onAdd: (value: string) => void }) => {
+const TodoInput = () => {
   const [value, setValue] = useState("");
+  const dispatch = useTodoDispatch();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!value.trim()) return;
-    onAdd(value);
+
+    const newTodo: Todo = {
+      id: uuidv4(),
+      text: value,
+      checkYn: "N",
+      isStarred: false,
+    };
+    dispatch({ type: "ADD", payload: newTodo });
 
     setValue("");
   };

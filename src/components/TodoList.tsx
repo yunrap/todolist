@@ -1,32 +1,17 @@
+import { useTodoState } from "../state/todo/TodoContext";
 import { Todo } from "../types/todo";
 import TodoItem from "./TodoItem";
 
-type TodoListProps = {
-  todoList: Todo[];
-  onClickDelete: (id: string) => void;
-  onToggle: (id: string) => void;
-  onToggleStar: (id: string) => void;
-  onUpdateText: (id: string, value: string) => void;
-};
+const TodoList = () => {
+  const todos = useTodoState();
+  const sortedTodoList = [...todos].sort((a, b) => {
+    return Number(b.isStarred === true) - Number(a.isStarred === true);
+  });
 
-const TodoList = ({
-  todoList,
-  onClickDelete,
-  onToggle,
-  onToggleStar,
-  onUpdateText,
-}: TodoListProps) => {
   return (
     <ul>
-      {todoList.map((todo) => (
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          onClickDelete={onClickDelete}
-          onToggle={onToggle}
-          onToggleStar={onToggleStar}
-          onUpdateText={onUpdateText}
-        />
+      {sortedTodoList.map((todo) => (
+        <TodoItem key={todo.id} todo={todo} />
       ))}
     </ul>
   );

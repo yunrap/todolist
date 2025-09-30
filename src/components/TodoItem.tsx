@@ -1,21 +1,14 @@
 import EditableInput from "./EditableInput";
 import { Todo } from "../types/todo";
 import React from "react";
+import { useTodoDispatch } from "../state/todo/TodoContext";
 type TodoItemProps = {
   todo: Todo;
-  onClickDelete: (id: string) => void;
-  onToggle: (id: string) => void;
-  onToggleStar: (id: string) => void;
-  onUpdateText: (id: string, value: string) => void;
 };
 
-const TodoItem = ({
-  todo,
-  onClickDelete,
-  onToggle,
-  onToggleStar,
-  onUpdateText,
-}: TodoItemProps) => {
+const TodoItem = ({ todo }: TodoItemProps) => {
+  const dispatch = useTodoDispatch();
+
   return (
     <>
       <li>
@@ -23,18 +16,29 @@ const TodoItem = ({
           <input
             type="checkbox"
             checked={todo.checkYn === "Y" ? true : false}
-            onChange={() => onToggle(todo.id)}
+            onChange={() =>
+              dispatch({ type: "TOGGLE_CHECK", payload: todo.id })
+            }
           />
         </label>
-        <button onClick={() => onToggleStar(todo.id)}>
+        <button
+          onClick={() => dispatch({ type: "TOGGLE_STAR", payload: todo.id })}
+        >
           {todo.isStarred ? "⭐️" : "☆"}
         </button>
 
         <EditableInput
           value={todo.text}
-          onSave={(newText: string) => onUpdateText(todo.id, newText)}
+          onSave={(newText: string) =>
+            dispatch({
+              type: "UPDATE_TEXT",
+              payload: { id: todo.id, text: newText },
+            })
+          }
         />
-        <button onClick={() => onClickDelete(todo.id)}>삭제</button>
+        <button onClick={() => dispatch({ type: "DELETE", payload: todo.id })}>
+          삭제
+        </button>
       </li>
     </>
   );
