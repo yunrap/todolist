@@ -1,5 +1,12 @@
 import React from "react";
 import EditableInput from "./EditableInput";
+type TodoItemProps = {
+  todo: Todo;
+  onClickDelete: (id: string) => void;
+  onToggle: (id: string) => void;
+  onToggleStar: (id: string) => void;
+  onUpdateText: (id: string, value: string) => void;
+};
 
 const TodoItem = ({
   todo,
@@ -7,7 +14,7 @@ const TodoItem = ({
   onToggle,
   onToggleStar,
   onUpdateText,
-}) => {
+}: TodoItemProps) => {
   return (
     <>
       <li>

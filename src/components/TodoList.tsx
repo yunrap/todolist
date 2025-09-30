@@ -1,12 +1,20 @@
 import TodoItem from "./TodoItem";
 
+type TodoListProps = {
+  todoList: Todo[];
+  onClickDelete: (id: string) => void;
+  onToggle: (id: string) => void;
+  onToggleStar: (id: string) => void;
+  onUpdateText: (id: string, value: string) => void;
+};
+
 const TodoList = ({
   todoList,
   onClickDelete,
   onToggle,
   onToggleStar,
   onUpdateText,
-}) => {
+}: TodoListProps) => {
   return (
     <ul>
       {todoList.map((todo) => (

@@ -5,10 +5,10 @@ import TodoList from "./components/TodoList";
 import { v4 as uuidv4 } from "uuid";
 
 function App() {
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useState<Todo[]>([]);
 
-  const handleAdd = (value) => {
-    const data = {
+  const handleAdd = (value: string) => {
+    const data: Todo = {
       id: uuidv4(),
       text: value,
       checkYn: "N",
@@ -17,12 +17,11 @@ function App() {
     setTodoList((todoList) => [...todoList, data]);
   };
 
-  const handleClickDelete = useCallback((id) => {
-    console.log(id);
+  const handleClickDelete = useCallback((id: string) => {
     setTodoList((todoList) => todoList.filter((todo) => todo.id !== id));
   }, []);
 
-  const handleToggle = (id) => {
+  const handleToggle = (id: string) => {
     console.log(id);
     setTodoList((prevList) =>
       prevList.map((todo) =>
@@ -36,7 +35,7 @@ function App() {
     );
   };
 
-  const handleToggleStar = (id) => {
+  const handleToggleStar = (id: string) => {
     setTodoList((prevList) =>
       prevList.map((todo) =>
         todo.id === id ? { ...todo, isStarred: !todo.isStarred } : todo
@@ -44,7 +43,7 @@ function App() {
     );
   };
 
-  const onUpdateText = (id, value) => {
+  const onUpdateText = (id: string, value: string) => {
     console.log(id, value);
     setTodoList((prevList) =>
       prevList.map((todo) => (todo.id === id ? { ...todo, text: value } : todo))
@@ -52,7 +51,7 @@ function App() {
   };
 
   const sortedTodoList = [...todoList].sort((a, b) => {
-    return (b.isStarred === true) - (a.isStarred === true);
+    return Number(b.isStarred === true) - Number(a.isStarred === true);
   });
 
   return (

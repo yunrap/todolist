@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 const EditableInput = ({ value, onSave }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(value);
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (isEditing && inputRef.current) {
