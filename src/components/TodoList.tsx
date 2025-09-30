@@ -9,7 +9,7 @@ const TodoList = () => {
   });
 
   return (
-    <ul>
+    <ul className="py-10 flex flex-col gap-6 ">
       {sortedTodoList.map((todo) => (
         <TodoItem key={todo.id} todo={todo} />
       ))}

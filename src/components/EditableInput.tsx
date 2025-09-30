@@ -1,9 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
+import { Input } from "./ui/input";
+import { Todo } from "@/types/todo";
 
 const EditableInput = ({
+  todo,
   value,
   onSave,
 }: {
+  todo: Todo;
   value: string;
   onSave: (value: string) => void;
 }) => {
@@ -43,7 +47,7 @@ const EditableInput = ({
   };
 
   return isEditing ? (
-    <input
+    <Input
       ref={inputRef}
       value={editValue}
       onChange={handleChange}
@@ -51,7 +55,12 @@ const EditableInput = ({
       onKeyDown={handleKeyDown}
     />
   ) : (
-    <span onDoubleClick={handleDoubleClick}>{value}</span>
+    <span
+      className={`border-b ${todo.checkYn === "Y" ? "line-through text-gray-400" : ""}`}
+      onDoubleClick={handleDoubleClick}
+    >
+      {value}
+    </span>
   );
 };
 

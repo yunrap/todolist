@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Todo } from "../types/todo";
 import { v4 as uuidv4 } from "uuid";
 import { useTodoDispatch } from "../state/todo/TodoContext";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
 
 const TodoInput = () => {
   const [value, setValue] = useState("");
@@ -24,13 +26,13 @@ const TodoInput = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <form onSubmit={handleSubmit} className="flex gap-3">
+      <Input
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="할일을 입력하세요."
-      ></input>
-      <button>등록</button>
+      ></Input>
+      <Button>등록</Button>
     </form>
   );
 };
