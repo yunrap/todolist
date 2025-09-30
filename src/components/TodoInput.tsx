@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const TodoInput = ({ onAdd }) => {
+const TodoInput = ({ onAdd }: { onAdd: (value: string) => void }) => {
   const [value, setValue] = useState("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

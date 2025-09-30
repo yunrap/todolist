@@ -3,6 +3,7 @@ import "./App.css";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
 import { v4 as uuidv4 } from "uuid";
+import { Todo } from "./types/todo";
 
 function App() {
   const [todoList, setTodoList] = useState<Todo[]>([]);

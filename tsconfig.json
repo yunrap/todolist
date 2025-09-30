@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noEmitOnError": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "build", // 컴파일 결과물 폴더
+    "rootDir": "src" // 소스 코드 폴더
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "build"]
+}

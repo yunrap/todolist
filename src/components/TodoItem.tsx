@@ -1,5 +1,6 @@
-import React from "react";
 import EditableInput from "./EditableInput";
+import { Todo } from "../types/todo";
+import React from "react";
 type TodoItemProps = {
   todo: Todo;
   onClickDelete: (id: string) => void;
@@ -31,7 +32,7 @@ const TodoItem = ({
 
         <EditableInput
           value={todo.text}
-          onSave={(newText) => onUpdateText(todo.id, newText)}
+          onSave={(newText: string) => onUpdateText(todo.id, newText)}
         />
         <button onClick={() => onClickDelete(todo.id)}>삭제</button>
       </li>

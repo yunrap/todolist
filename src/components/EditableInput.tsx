@@ -1,6 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 
-const EditableInput = ({ value, onSave }) => {
+const EditableInput = ({
+  value,
+  onSave,
+}: {
+  value: string;
+  onSave: (value: string) => void;
+}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(value);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -15,7 +21,7 @@ const EditableInput = ({ value, onSave }) => {
     setIsEditing(true);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditValue(e.target.value);
   };
 
@@ -23,7 +29,7 @@ const EditableInput = ({ value, onSave }) => {
     finishEditing();
   };
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       finishEditing();
     }

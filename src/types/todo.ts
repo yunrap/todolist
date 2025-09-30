@@ -4,3 +4,5 @@ type Todo = {
   checkYn: "Y" | "N";
   isStarred: boolean;
 };
+
+export { Todo };
