@@ -28,11 +28,12 @@ const TodoInput = () => {
   return (
     <form onSubmit={handleSubmit} className="flex gap-3">
       <Input
+        className="h-18 text-center"
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="할일을 입력하세요."
       ></Input>
-      <Button>등록</Button>
+      <Button className="h-18">등록</Button>
     </form>
   );
 };
