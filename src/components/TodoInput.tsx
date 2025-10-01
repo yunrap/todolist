@@ -1,40 +1,27 @@
 import React, { useState } from "react";
-import { Todo } from "../types/todo";
-import { v4 as uuidv4 } from "uuid";
-import { useTodoDispatch } from "../state/todo/TodoContext";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+type TodoPresenterProps = {
+  input: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onAdd: (e: React.MouseEvent<HTMLButtonElement>) => void;
+};
 
-const TodoInput = () => {
-  const [value, setValue] = useState("");
-  const dispatch = useTodoDispatch();
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (!value.trim()) return;
-
-    const newTodo: Todo = {
-      id: uuidv4(),
-      text: value,
-      checkYn: "N",
-      isStarred: false,
-    };
-    dispatch({ type: "ADD", payload: newTodo });
-
-    setValue("");
-  };
-
+const TodoInput = ({ input, onChange, onAdd }: TodoPresenterProps) => {
   return (
-    <form onSubmit={handleSubmit} className="flex gap-3">
-      <Input
-        className="h-18 text-center"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        placeholder="할일을 입력하세요."
-      ></Input>
-      <Button className="h-18">등록</Button>
-    </form>
+    <>
+      <div className="flex gap-2">
+        <Input
+          className="h-18 text-center"
+          value={input}
+          onChange={onChange}
+          placeholder="할일을 입력하세요."
+        ></Input>
+        <Button className="h-18" onClick={onAdd}>
+          등록
+        </Button>
+      </div>
+    </>
   );
 };
 

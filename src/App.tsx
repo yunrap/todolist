@@ -1,5 +1,6 @@
 import "./App.css";
 import ThemeToggle from "./components/ThemeToggle";
+import TodoContainer from "./components/TodoContainer";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
 import { TodoProvider } from "./state/todo/TodoContext";
@@ -16,8 +17,7 @@ function App() {
           </header>
           {/* main */}
           <main>
-            <TodoInput />
-            <TodoList />
+            <TodoContainer />
           </main>
         </div>
       </TodoProvider>
