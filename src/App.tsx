@@ -9,7 +9,7 @@ function App() {
         {/* header */}
         <header>
           <ThemeToggle />
-          <h1 className="py-10 text-7xl text-yellow-400">Todolist</h1>
+          <h1 className="py-10 text-7xl text-yellow-400">할까말까</h1>
         </header>
         {/* main */}
         <main>

@@ -105,7 +105,10 @@ export const useTodoActions = (initialTodos: TodoState = []) => {
     }
   };
 
-  const sortedTodos = ids.map((id) => todos.find((t) => t.id === id)!);
+  const todoMap = new Map(todos.map((t) => [t.id, t]));
+  const sortedTodos = ids
+    .map((id) => todoMap.get(id))
+    .filter((todo): todo is Todo => todo !== undefined);
 
   return {
     todos: sortedTodos,

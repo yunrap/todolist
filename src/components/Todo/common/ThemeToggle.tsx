@@ -17,7 +17,7 @@ export default function ThemeToggle() {
       onClick={() => setIsDark(!isDark)}
       className="border px-4 py-2 rounded bg-gray-100 dark:bg-gray-800 dark:text-white"
     >
-      {isDark ? "☀️ Light Mode" : "🌙 Dark Mode"}
+      {isDark ? "☀️ 라이트모드" : "🌙 다크모드"}
     </button>
   );
 }
