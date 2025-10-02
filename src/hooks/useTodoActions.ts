@@ -1,5 +1,7 @@
 import { Todo } from "@/types/todo";
-import { useReducer, useState } from "react";
+import { DragEndEvent } from "@dnd-kit/core";
+import { arrayMove } from "@dnd-kit/sortable";
+import { useEffect, useReducer, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 export type TodoAction =
@@ -43,6 +45,16 @@ export function todoReducer(state: Todo[], action: TodoAction): TodoState {
 export const useTodoActions = (initialTodos: TodoState = []) => {
   const [todos, dispatch] = useReducer(todoReducer, []);
   const [input, setInput] = useState("");
+  const [ids, setIds] = useState<string[]>([]);
+
+  useEffect(() => {
+    setIds((prev) => {
+      const currentIds = todos.map((todo) => todo.id);
+      const newIds = currentIds.filter((id) => !prev.includes(id));
+      const filteredPrev = prev.filter((id) => currentIds.includes(id));
+      return [...filteredPrev, ...newIds];
+    });
+  }, [todos]);
 
   const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -82,8 +94,21 @@ export const useTodoActions = (initialTodos: TodoState = []) => {
     dispatch({ type: "TOGGLE_STAR", payload: id });
   };
 
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (over && active.id !== over.id) {
+      setIds((prev) => {
+        const oldIndex = prev.indexOf(String(active.id));
+        const newIndex = prev.indexOf(String(over.id));
+        return arrayMove(prev, oldIndex, newIndex);
+      });
+    }
+  };
+
+  const sortedTodos = ids.map((id) => todos.find((t) => t.id === id)!);
+
   return {
-    todos,
+    todos: sortedTodos,
     input,
     handleChangeValue,
     handleAdd,
@@ -91,5 +116,6 @@ export const useTodoActions = (initialTodos: TodoState = []) => {
     handleCheck,
     handleUpdateValue,
     handleToggleStar,
+    handleDragEnd,
   };
 };

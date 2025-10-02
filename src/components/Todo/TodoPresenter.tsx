@@ -1,6 +1,7 @@
 import { Todo } from "@/types/todo";
 import TodoInput from "./List/TodoInput";
 import TodoList from "./List/TodoList";
+import { DragEndEvent } from "@dnd-kit/core";
 type TodoPresenterProps = {
   todos: Todo[];
   input: string;
@@ -10,6 +11,7 @@ type TodoPresenterProps = {
   onCheck: (id: string) => void;
   onUpdateValue: (newText: string, id: string) => void;
   onToggleStar: (id: string) => void;
+  onDragEnd: (event: DragEndEvent) => void;
 };
 
 const TodoPresenter = ({
@@ -21,6 +23,7 @@ const TodoPresenter = ({
   onDelete,
   onCheck,
   onToggleStar,
+  onDragEnd,
 }: TodoPresenterProps) => {
   return (
     <>
@@ -31,6 +34,7 @@ const TodoPresenter = ({
         onCheck={onCheck}
         onUpdateValue={onUpdateValue}
         onToggleStar={onToggleStar}
+        onDragEnd={onDragEnd}
       />
     </>
   );

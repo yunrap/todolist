@@ -11,6 +11,7 @@ const TodoContainer = () => {
     handleCheck,
     handleUpdateValue,
     handleToggleStar,
+    handleDragEnd,
   } = useTodoActions();
 
   return (
@@ -24,6 +25,7 @@ const TodoContainer = () => {
         onDelete={handleDelete}
         onCheck={handleCheck}
         onToggleStar={handleToggleStar}
+        onDragEnd={handleDragEnd}
       />
     </>
   );
