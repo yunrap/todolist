@@ -1,20 +1,20 @@
 /**
- * DragHandleIcon
+ * MenuDropIcon
  *
- * 드래그 핸들용 아이콘 컴포넌트
- * Material Design Swap Vert 아이콘
+ * 매뉴 아이콘 컴포넌트
+ * Material Design Menu 아이콘
  *
  * @param {React.SVGProps<SVGSVGElement>} props
  * @param {string} [props.fillColor]
  * @returns {JSX.Element}
  */
 
-const DragHandleIcon = (
+const MenuDropIcon = (
   props: React.SVGProps<SVGSVGElement> & { fillColor?: string }
 ) => (
   <svg
     role="img"
-    aria-label="항목 드래그"
+    aria-label="메뉴 열기"
     xmlns="http://www.w3.org/2000/svg"
     height="24px"
     viewBox="0 -960 960 960"
@@ -22,7 +22,7 @@ const DragHandleIcon = (
     fill={props.fillColor || "#c0c0c0"}
     {...props}
   >
-    <path d="M320-440v-287L217-624l-57-56 200-200 200 200-57 56-103-103v287h-80ZM600-80 400-280l57-56 103 103v-287h80v287l103-103 57 56L600-80Z" />
+    <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
   </svg>
 );
-export default DragHandleIcon;
+export default MenuDropIcon;

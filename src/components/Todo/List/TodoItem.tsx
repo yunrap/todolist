@@ -6,6 +6,16 @@ import { CSS } from "@dnd-kit/utilities";
 import { useSortable } from "@dnd-kit/sortable";
 import DragHandleIcon from "@/components/icons/DragHandleIcon";
 import IconWrapper from "@/components/icons/IconWrapper";
+import MenuDropIcon from "@/components/icons/MenuDropIcon";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
 type TodoItemProps = {
   todo: Todo;
   onDelete: (id: string) => void;
@@ -32,7 +42,7 @@ const TodoItem = ({
   return (
     <li
       style={style}
-      className="text-left grid items-center grid-cols-[1fr_1fr_1fr_20fr_3fr] gap-4"
+      className="text-left grid  items-center grid-cols-[1fr_0.5fr_0.5fr_20fr_3fr] gap-4"
     >
       <button ref={setNodeRef} {...attributes} {...listeners}>
         <IconWrapper cursor="grab">
@@ -46,15 +56,27 @@ const TodoItem = ({
           onChange={() => onCheck(todo.id)}
         />
       </label>
-      <button onClick={() => onToggleStar(todo.id)}>
-        {todo.isStarred ? "⭐️" : "☆"}
-      </button>
+      {todo.isStarred ? <div aria-label=""> ⭐️</div> : <div></div>}
       <EditableInput
         todo={todo}
         value={todo.text}
         onSave={(newText: string) => onUpdateValue(newText, todo.id)}
       />
-      <Button onClick={() => onDelete(todo.id)}>삭제</Button>
+      <DropdownMenu>
+        <DropdownMenuTrigger>
+          <IconWrapper cursor="pointer" size="lg">
+            <MenuDropIcon />
+          </IconWrapper>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem onClick={() => onDelete(todo.id)}>
+            삭제
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => onToggleStar(todo.id)}>
+            {todo.isStarred ? "즐겨찾기 해제" : "즐겨찾기"}
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </li>
   );
 };
