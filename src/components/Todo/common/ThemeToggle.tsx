@@ -3,6 +3,14 @@ import { useEffect, useState } from "react";
 export default function ThemeToggle() {
   const [isDark, setIsDark] = useState(false);
 
+  // 시스템 다크모드 체크
+  useEffect(() => {
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    setIsDark(prefersDark);
+  }, []);
+
   useEffect(() => {
     const root = window.document.documentElement;
     if (isDark) {
