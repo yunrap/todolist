@@ -8,6 +8,7 @@ import {
   useSensor,
   useSensors,
   DragEndEvent,
+  TouchSensor,
 } from "@dnd-kit/core";
 import {
   SortableContext,
@@ -39,11 +40,12 @@ const TodoList = ({
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
+    useSensor(TouchSensor)
   );
 
   return (
-    <ul className="py-10 flex flex-col gap-6 ">
+    <ul className="py-10 flex flex-col gap-6">
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}

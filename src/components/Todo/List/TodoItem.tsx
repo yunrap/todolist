@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { CSS } from "@dnd-kit/utilities";
 import { useSortable } from "@dnd-kit/sortable";
 import DragHandleIcon from "@/components/icons/DragHandleIcon";
+import IconWrapper from "@/components/icons/IconWrapper";
 type TodoItemProps = {
   todo: Todo;
   onDelete: (id: string) => void;
@@ -34,7 +35,9 @@ const TodoItem = ({
       className="text-left grid items-center grid-cols-[1fr_1fr_1fr_20fr_3fr] gap-4"
     >
       <button ref={setNodeRef} {...attributes} {...listeners}>
-        <DragHandleIcon />
+        <IconWrapper cursor="grab">
+          <DragHandleIcon />
+        </IconWrapper>
       </button>
       <label className="text-center">
         <input
