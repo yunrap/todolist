@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Input } from "./ui/input";
 import { Todo } from "@/types/todo";
+import { Input } from "../../ui/input";
 
 const EditableInput = ({
   todo,

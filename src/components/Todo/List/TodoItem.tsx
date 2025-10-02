@@ -1,7 +1,7 @@
-import EditableInput from "./EditableInput";
-import { Todo } from "../types/todo";
+import { Todo } from "@/types/todo";
+import EditableInput from "../common/EditableInput";
 import React from "react";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 type TodoItemProps = {
   todo: Todo;
   onDelete: (id: string) => void;

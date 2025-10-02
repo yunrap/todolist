@@ -1,6 +1,6 @@
 import { Todo } from "@/types/todo";
-import TodoInput from "./TodoInput";
-import TodoList from "./TodoList";
+import TodoInput from "./List/TodoInput";
+import TodoList from "./List/TodoList";
 type TodoPresenterProps = {
   todos: Todo[];
   input: string;
